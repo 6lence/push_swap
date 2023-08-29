@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_push_swap.h                                     :+:      :+:    :+:   */
+/*   ft_algo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/29 12:20:53 by miguel            #+#    #+#             */
-/*   Updated: 2023/08/29 15:57:59 by miguel           ###   ########.fr       */
+/*   Created: 2023/08/29 15:43:33 by miguel            #+#    #+#             */
+/*   Updated: 2023/08/29 16:09:37 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PUSH_SWAP_H
-# define FT_PUSH_SWAP_H
+#include "../ft_push_swap.h"
 
-# include "src/ft_printf/ft_printf.h"
-# include <stdlib.h>
-
-typedef struct s_stack
+void	ft_sort_three(t_data **a)
 {
-	int			x;
-	t_stack		*next;
-}				t_stack;
 
-typedef struct s_data
+}
+
+void	ft_sort(t_stack *a, t_stack *b)
 {
-	t_stack	*s_a;
-	t_stack	*s_b;
-}			t_data;
+	int	len;
 
-void	ft_verif(char *str, t_data *l);
-void	ft_error(char *str, t_data *l);
-
-#endif
+	len = ft_lstsize(a);
+	if (len == 2)
+		ft_sa(&a, 0);
+	else if (len == 3)
+		ft_sort_three(&a);
+	else
+		ft_sort_big(&a, &b);
+}

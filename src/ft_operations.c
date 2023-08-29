@@ -1,34 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_push_swap.h                                     :+:      :+:    :+:   */
+/*   ft_operations.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/29 12:20:53 by miguel            #+#    #+#             */
-/*   Updated: 2023/08/29 15:57:59 by miguel           ###   ########.fr       */
+/*   Created: 2023/08/29 16:09:48 by miguel            #+#    #+#             */
+/*   Updated: 2023/08/29 16:12:49 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PUSH_SWAP_H
-# define FT_PUSH_SWAP_H
+#include "../ft_push_swap.h"
 
-# include "src/ft_printf/ft_printf.h"
-# include <stdlib.h>
-
-typedef struct s_stack
+void	ft_sb(t_stack **b, int flag)
 {
-	int			x;
-	t_stack		*next;
-}				t_stack;
+	t_stack	*tmp;
 
-typedef struct s_data
+	if (!b || !((*b)->next))
+		return ;
+	tmp = *b;
+	*b = (*b)->next;
+	(*b)->next = tmp;
+	if (flag == 0)
+		ft_printf("sb\n");
+}
+
+void	ft_sa(t_stack **a, int flag)
 {
-	t_stack	*s_a;
-	t_stack	*s_b;
-}			t_data;
+	t_stack	*tmp;
 
-void	ft_verif(char *str, t_data *l);
-void	ft_error(char *str, t_data *l);
-
-#endif
+	if (!a || !((*a)->next))
+		return ;
+	tmp = *a;
+	*a = (*a)->next;
+	(*a)->next = tmp;
+	if (flag == 0)
+		ft_printf("sa\n");
+}

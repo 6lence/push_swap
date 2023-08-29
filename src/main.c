@@ -6,13 +6,13 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:12:08 by miguel            #+#    #+#             */
-/*   Updated: 2023/08/29 15:05:03 by miguel           ###   ########.fr       */
+/*   Updated: 2023/08/29 15:42:17 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_push_swap.h"
 
-static void	ft_add(char *nb, t_stack *a)
+static void	ft_add_back(char *nb, t_stack *a)
 {
 	t_stack	*tmp;
 
@@ -33,7 +33,7 @@ static void	ft_parsing_chain(char *chain, t_data *l)
 	i = 0;
 	while (tmp[i])
 	{
-		ft_add(tmp[i], l->s_a);
+		ft_add_back(tmp[i], l->s_a);
 		i++;
 	}
 	i = 0;
@@ -50,7 +50,7 @@ static void	ft_parsing(char **str, t_data *l)
 	while (str[i])
 	{
 		ft_verif(str[i], l);
-		ft_add(str[i], l->s_a);
+		ft_add_back(str[i], l->s_a);
 		i++;
 	}
 }
@@ -73,4 +73,5 @@ int	main(int argc, char **argv)
 		ft_parsing_chain(argv[2], l);
 	else if (argc > 2)
 		ft_parsing(argv, l);
+	ft_sort(l->s_a, l->s_b);
 }

@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 13:38:36 by miguel            #+#    #+#             */
-/*   Updated: 2023/08/29 16:12:50 by miguel           ###   ########.fr       */
+/*   Updated: 2023/08/30 15:27:22 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,7 @@
 static void	ft_free_all(t_data *l)
 {
 	if (l)
-	{
-		free(l->s_a);
-		free(l->s_b);
 		free(l);
-	}
 }
 
 void	ft_error(char *str, t_data *l)
@@ -43,5 +39,32 @@ void	ft_verif(char *str, t_data *l)
 			&& str[i - 1] != ' ')
 			ft_error("Invalid number in the chain.", l);
 		i++;
+	}
+}
+
+int	ft_lstlen(t_stack **a)
+{
+	int		i;
+	t_stack	*tmp;
+
+	tmp = *a;
+	i = 0;
+	while (tmp != 0)
+	{
+		i++;
+		tmp = tmp->next;
+	}
+	return (i);
+}
+
+void	ft_lstprint(t_stack **a)
+{
+	t_stack	*tmp;
+
+	tmp = *a;
+	while (tmp)
+	{
+		ft_printf("%d\n", tmp->x);
+		tmp = tmp->next;
 	}
 }

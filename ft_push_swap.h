@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:20:53 by miguel            #+#    #+#             */
-/*   Updated: 2023/08/29 15:57:59 by miguel           ###   ########.fr       */
+/*   Updated: 2023/08/30 15:26:40 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 
 typedef struct s_stack
 {
-	int			x;
-	t_stack		*next;
+	int					x;
+	struct s_stack		*next;
 }				t_stack;
 
 typedef struct s_data
@@ -28,6 +28,8 @@ typedef struct s_data
 	t_stack	*s_b;
 }			t_data;
 
+int		ft_lstlen(t_stack **a);
+void	ft_lstprint(t_stack **a);
 void	ft_verif(char *str, t_data *l);
 void	ft_error(char *str, t_data *l);
 

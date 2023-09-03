@@ -1,22 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_strsrch.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescobar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/14 11:58:47 by mescobar          #+#    #+#             */
-/*   Updated: 2023/02/14 14:47:59 by mescobar         ###   ########.fr       */
+/*   Created: 2023/08/31 11:58:22 by mescobar          #+#    #+#             */
+/*   Updated: 2023/08/31 11:58:44 by mescobar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstlast(t_list *lst)
+int	ft_strsrch(char *s1, char *s2)
 {
-	if (!lst)
-		return (NULL);
-	while (lst->next != 0)
-		lst = lst->next;
-	return (lst);
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (s2[i])
+	{
+		j = 0;
+		if (s2[i] == s1[j])
+		{
+			i++;
+			j++;
+		}
+		if (j == ft_strlen(s1))
+			return (1);
+		else
+			i++;
+	}
+	return (0);
 }

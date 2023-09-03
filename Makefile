@@ -3,7 +3,13 @@ MAKEFLAGS += --silent
 SRC = ./src/
 
 FILES_C =	${SRC}main.c \
-			${SRC}ft_utils.c \
+			${SRC}ft_error_utils.c \
+			${SRC}ft_verifs_utils.c \
+			${SRC}ft_lst_utils.c \
+			${SRC}ft_algo.c \
+			${SRC}ft_algo_utils.c \
+			${SRC}ft_algo_utils2.c \
+			${SRC}ft_algo_utils3.c \
 
 LIBFT_PATH = ${SRC}ft_printf/
 
@@ -24,15 +30,17 @@ ${LIBFT}:
 
 ${NAME}: ${LIBFT} ${FILES_O}
 	cc ${FLAGS} ${FILES_O} ${LIBFT} -I ${FILES_H} -o ${NAME} -lm \
-		&& echo "Make done successfully" || echo "ERROR"
+		&& echo "Make done successfully" || echo "Compilation ERROR"
 
 clean:
-	rm -f ${FILES_O}
+	rm -f ${FILES_O} \
+	&& echo "Objects files deteled successfully" || echo "No objects files to delete"
 	make -C ${LIBFT_PATH} clean
 
-fclean:
-	rm -r ${NAME}
+fclean: clean
+	rm -r ${NAME} \
+	&& echo "${NAME} deleted correctly" || echo "No file to delete"
 	make -C ${LIBFT_PATH} fclean \
-	&& echo "Fclean done successfully" || echo "ERROR"
+	&& echo "Fclean done successfully" || echo "Cleaning ERROR"
 
 re: fclean all

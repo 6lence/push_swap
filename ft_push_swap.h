@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_push_swap.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:20:53 by miguel            #+#    #+#             */
-/*   Updated: 2023/08/30 15:26:40 by miguel           ###   ########.fr       */
+/*   Updated: 2023/09/03 18:50:48 by mescobar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,30 @@ typedef struct s_stack
 
 typedef struct s_data
 {
-	t_stack	*s_a;
-	t_stack	*s_b;
+	int		print;
+	int		size_a;
+	char	**args;
 }			t_data;
 
 int		ft_lstlen(t_stack **a);
 void	ft_lstprint(t_stack **a);
 void	ft_verif(char *str, t_data *l);
 void	ft_error(char *str, t_data *l);
+void	ft_repeat_verif(char **str, t_data *l);
+void	ft_free_all(t_data *l);
+t_stack	*ft_lstlast(t_stack *st);
+int		ft_lstmax(t_stack *a);
+int		ft_lstmin(t_stack *a);
+void	ft_sa(t_stack **a, t_data *l);
+void	ft_sb(t_stack **a, t_data *l);
+void	ft_ss(t_stack **a, t_stack **b, t_data *l);
+void	ft_ra(t_stack **a, t_data *l);
+void	ft_rb(t_stack **a, t_data *l);
+void	ft_rr(t_stack **a, t_stack **b, t_data *l);
+void	ft_rra(t_stack **a, t_data *l);
+void	ft_rrb(t_stack **a, t_data *l);
+void	ft_rrr(t_stack **a, t_stack **b, t_data *l);
+void	ft_pa(t_stack **a, t_stack **b, t_data *l);
+void	ft_pb(t_stack **a, t_stack **b, t_data *l);
 
 #endif

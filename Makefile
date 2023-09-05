@@ -6,11 +6,13 @@ FILES_C =	${SRC}main.c \
 			${SRC}ft_error_utils.c \
 			${SRC}ft_verifs_utils.c \
 			${SRC}ft_lst_utils.c \
+			${SRC}ft_lst_utils_2.c \
 			${SRC}ft_algo.c \
 			${SRC}ft_algo_utils.c \
-			${SRC}ft_algo_utils2.c \
-			${SRC}ft_algo_utils3.c \
+			${SRC}ft_algo_utils_2.c \
+			${SRC}ft_algo_utils_3.c \
 			${SRC}ft_sort_until_three.c \
+			${SRC}ft_sort_until_three_utils.c \
 
 LIBFT_PATH = ${SRC}ft_printf/
 

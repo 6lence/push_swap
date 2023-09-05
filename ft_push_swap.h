@@ -6,7 +6,7 @@
 /*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:20:53 by miguel            #+#    #+#             */
-/*   Updated: 2023/09/05 11:07:19 by mescobar         ###   ########.fr       */
+/*   Updated: 2023/09/05 16:41:45 by mescobar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_data
 	int		max_b;
 	int		sign;
 	int		opt;
+	int		opt_in_a;
 	char	**args;
 }			t_data;
 

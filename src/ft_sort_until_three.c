@@ -6,7 +6,7 @@
 /*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 09:40:23 by miguel            #+#    #+#             */
-/*   Updated: 2023/09/05 11:08:46 by mescobar         ###   ########.fr       */
+/*   Updated: 2023/09/05 16:44:15 by mescobar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,27 @@ static int	ft_opt(t_stack **a, t_stack **b, t_data *l)
 	return (len);
 }
 
+static void	ft_elem(t_stack **a, t_stack **b, t_data *l)
+{
+	int	i;
+	int	new_opt;
+
+	l->opt = ft_opt(a, b, l);
+	i = 0;
+	while (i < l->opt || i < (ft_lstlen(a) / 2))
+	{
+		new_opt = ft_opt(a, b, l);
+		if (new_opt < l->opt)
+		{
+			l->opt = new_opt;
+			l->push = *a;
+		}
+		*a = (*a)->next;
+		i++;
+	}
+	l->opt_in_a = i;
+}
+
 static void	ft_push(t_stack **a, t_stack **b, t_data *l)
 {
 	int	i;
@@ -70,27 +91,6 @@ static void	ft_push(t_stack **a, t_stack **b, t_data *l)
 	}
 }
 
-static void	ft_elem(t_stack **a, t_stack **b, t_data *l)
-{
-	int	i;
-	int	opt;
-	int	new_opt;
-
-	opt = ft_opt(a, b, l);
-	i = 0;
-	while (i < opt || i < (ft_lstlen(a) / 2))
-	{
-		new_opt = ft_opt(a, b, l);
-		if (new_opt < opt)
-		{
-			opt = new_opt;
-			l->push = *a;
-		}
-		*a = (*a)->next;
-		i++;
-	}
-}
-
 void	ft_sort_until_three(t_stack **a, t_stack **b, t_data *l)
 {
 	ft_pb(a, b, l);
@@ -99,6 +99,7 @@ void	ft_sort_until_three(t_stack **a, t_stack **b, t_data *l)
 	l->first = *a;
 	while (ft_lstlen(a) > 3)
 	{
+		*a = l->first;
 		ft_elem(a, b, l);
 		ft_push(a, b, l);
 	}

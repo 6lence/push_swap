@@ -10,6 +10,7 @@ FILES_C =	${SRC}main.c \
 			${SRC}ft_algo_utils.c \
 			${SRC}ft_algo_utils2.c \
 			${SRC}ft_algo_utils3.c \
+			${SRC}ft_sort_until_three.c \
 
 LIBFT_PATH = ${SRC}ft_printf/
 

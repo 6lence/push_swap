@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lst_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
+/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 12:03:27 by mescobar          #+#    #+#             */
-/*   Updated: 2023/09/03 18:50:39 by mescobar         ###   ########.fr       */
+/*   Updated: 2023/09/04 10:35:49 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	ft_lstmax(t_stack *a)
 {
 	int	ct;
 
-	ct = a->next;
+	ct = a->x;
 	while (a)
 	{
 		if (ct < a->x)

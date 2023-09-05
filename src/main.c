@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
+/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:12:08 by miguel            #+#    #+#             */
-/*   Updated: 2023/09/03 17:42:01 by mescobar         ###   ########.fr       */
+/*   Updated: 2023/09/04 10:44:03 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int	main(int argc, char **argv)
 		ft_init_str(argv[1], &a, l);
 	else if (argc > 2)
 		ft_init_args(argv + 1, &a, l);
+	l->size_a = ft_lstlen(&a);
 	ft_push_swap(l, &a);
 	return (0);
 }

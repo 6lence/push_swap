@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_push_swap.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
+/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:20:53 by miguel            #+#    #+#             */
-/*   Updated: 2023/09/03 18:50:48 by mescobar         ###   ########.fr       */
+/*   Updated: 2023/09/04 14:37:42 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,12 @@ typedef struct s_stack
 
 typedef struct s_data
 {
+	t_stack	*first;
+	t_stack	*push;
 	int		print;
 	int		size_a;
+	int		opt;
+	int		ct;
 	char	**args;
 }			t_data;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_verifs_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 11:09:49 by mescobar          #+#    #+#             */
-/*   Updated: 2023/09/06 15:22:25 by miguel           ###   ########.fr       */
+/*   Updated: 2023/09/07 01:02:17 by mescobar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void	ft_verif(char *str, t_data *l)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] > '9' && str[i] < '0'
+		if ((str[i] > '9' || str[i] < '0')
 			&& str[i] != '-' && str[i] != '+')
-			ft_error("Invalid arguments, try only numbers arguments.", l);
+			ft_error("Invalid arguments, try only numbers arguments", l);
 		if (i > 0 && (str[i] == '-' || str[i] == '+')
 			&& str[i - 1] != ' ')
 			ft_error("Invalid number in the chain.", l);

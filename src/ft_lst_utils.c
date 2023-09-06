@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lst_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 12:03:27 by mescobar          #+#    #+#             */
-/*   Updated: 2023/09/06 15:24:09 by miguel           ###   ########.fr       */
+/*   Updated: 2023/09/07 01:18:09 by mescobar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_push_swap.h"
 
-int	ft_lstlen(t_stack **a)
+int	ft_lstlen(t_stack *a)
 {
 	int		i;
 	t_stack	*tmp;
 
-	tmp = *a;
+	tmp = a;
 	i = 0;
 	while (tmp)
 	{

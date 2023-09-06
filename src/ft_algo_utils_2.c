@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_algo_utils_2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 17:52:41 by mescobar          #+#    #+#             */
-/*   Updated: 2023/09/06 16:22:57 by miguel           ###   ########.fr       */
+/*   Updated: 2023/09/07 00:23:18 by mescobar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@ void	ft_rb(t_stack **a, t_data *l)
 {
 	t_stack	*tmp;
 
-	if (!(*a))
+	if (!(*a) || !(*a)->next)
 		return ;
 	tmp = *a;
-	*a = ft_lstlast(*a);
+	while ((*a)->next)
+		*a = (*a)->next;
 	(*a)->next = tmp;
+	*a = tmp->next;
 	tmp->next = NULL;
 	if (l->print == 0)
 		ft_printf("rb\n");
@@ -35,12 +37,14 @@ void	ft_ra(t_stack **a, t_data *l)
 	if (!(*a) || !(*a)->next)
 		return ;
 	tmp = *a;
-	(ft_lstlast(*a))->next = tmp;
+	while ((*a)->next)
+		*a = (*a)->next;
+	(*a)->next = tmp;
+	*a = tmp->next;
 	tmp->next = NULL;
 	if (l->print == 0)
 		ft_printf("ra\n");
 }
-
 
 //push up every element of A and B, first become last
 void	ft_rr(t_stack **a, t_stack **b, t_data *l)

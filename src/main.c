@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:12:08 by miguel            #+#    #+#             */
-/*   Updated: 2023/09/06 16:03:09 by miguel           ###   ########.fr       */
+/*   Updated: 2023/09/07 01:18:54 by mescobar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	ft_init(t_data *l, t_stack **a)
 {
 	l->max_a = ft_lstmax(*a);
 	l->min_a = ft_lstmin(*a);
-	l->size_a = ft_lstlen(a);
+	l->size_a = ft_lstlen(*a);
 }
 
 int	main(int argc, char **argv)
@@ -77,7 +77,6 @@ int	main(int argc, char **argv)
 		ft_init_args(argv + 1, &a, l);
 	ft_init(l, &a);
 	ft_swap(l, &a);
-	ft_lstprint(&a);
 	ft_free_all(l);
 	ft_free_stack(&a);
 	return (0);

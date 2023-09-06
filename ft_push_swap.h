@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_push_swap.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:20:53 by miguel            #+#    #+#             */
-/*   Updated: 2023/09/06 15:59:53 by miguel           ###   ########.fr       */
+/*   Updated: 2023/09/07 01:19:37 by mescobar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_data
 	char	**args;
 }			t_data;
 
-int		ft_lstlen(t_stack **a);
+int		ft_lstlen(t_stack *a);
 void	ft_lstprint(t_stack **a);
 void	ft_verif(char *str, t_data *l);
 void	ft_error(char *str, t_data *l);

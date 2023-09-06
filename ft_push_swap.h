@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_push_swap.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
+/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:20:53 by miguel            #+#    #+#             */
-/*   Updated: 2023/09/05 16:41:45 by mescobar         ###   ########.fr       */
+/*   Updated: 2023/09/05 17:50:20 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ typedef struct s_data
 	int		max_a;
 	int		min_b;
 	int		max_b;
-	int		sign;
+	int		sign_a;
+	int		sign_b;
 	int		opt;
 	int		opt_in_a;
 	char	**args;

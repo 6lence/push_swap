@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sort_until_three_utils.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
+/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:15:59 by mescobar          #+#    #+#             */
-/*   Updated: 2023/09/05 16:52:01 by mescobar         ###   ########.fr       */
+/*   Updated: 2023/09/06 11:45:44 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_push_swap.h"
-
-void	ft_see_b(t_stack **b, t_data *l)
-{
-	l->sign = 0;
-	if (l->opt > ft_lstlen(b) / 2)
-	{
-		l->opt = ft_lstlen(b) - l->opt;
-		l->sign = 1;
-	}
-}
 
 void	ft_find_a(t_stack **a, t_data *l)
 {
@@ -41,37 +31,72 @@ void	ft_find_a(t_stack **a, t_data *l)
 	}
 }
 
-void	ft_move_in_both(t_stack **a, t_stack **b, t_data *l)
+static void	ft_sign_stacks(t_stack **a, t_stack **b, t_data *l)
 {
-	int	i;
-	int	sign_a;
-	int	sign_b;
-
-	i = 0;
-	sign_b = 0;
-	sign_a = 0;
+	l->sign_a = 0;
+	l->sign_b = 0;
 	if (l->opt > ft_lstlen(b) / 2)
 	{
 		l->opt = ft_lstlen(b) - l->opt;
-		sign_b = 1;
+		l->sign_b = 1;
 	}
 	if (l->opt_in_a > ft_lstlen(a) / 2)
 	{
 		l->opt_in_a = ft_lstlen(a) - l->opt_in_a;
-		sign_a = 1;
+		l->sign_a = 1;
+	}
+}
+
+void	ft_move_in_both(t_stack **a, t_stack **b, t_data *l)
+{
+	while (l->opt_in_a >= 0)
+	{
+		ft_sign_stacks(a, b, l);
+		if (sign_a == 1 && sign_b == 1 && l->opt_in_a > 0)
+		{
+			ft_rrr(a, b, l);
+			l->opt--;
+		}	
+		else if (sign_a == 0 && sign_b == 0 && l->opt_in_a > 0)
+		{
+			ft_rr(a, b, l);
+			l->opt--;
+		}
+		else
+		{
+			if (l->sign_a == 0)
+				ft_ra(a, l);
+			else
+				ft_rra(a, l);
+		}
+		l->opt_in_a--;
+	}
+}
+
+void	ft_max_first(t_stack **b, t_data *l)
+{
+	int	sign;
+	int	i;
+
+	l->max_b = ft_lstmax(b);
+	sign = 0;
+	i = ft_lstpos(l->max_b, b);
+	if (i > ft_lstlen(b) / 2)
+	{
+		sign = 1;
+		i = ft_lstlen(b) - i;
 	}
 	while (i >= 0)
 	{
-		if (sign_a == sign_b && sign_a == 1 && (*a)->x > (*b)->x)
-			ft_rrr(a, b, l);
-		else if (sign_a == sign_b && sign_a == 0 && (*a)->x < (*b)->x)
-			ft_rr(a, b, l);
+		if (sign == 1)
+			ft_rrb(b, l);
 		else
-		{
-			if (sign_a == 1)
-				ft_rra(a, l);
-			else
-				ft_ra(a, l);
-		}
+			ft_rb(b, l);
+		i--;
 	}
+}
+
+void	ft_push_back(t_stack **a, t_stack **b, t_data *l)
+{
+	
 }

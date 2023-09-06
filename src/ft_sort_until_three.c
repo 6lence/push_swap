@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sort_until_three.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
+/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 09:40:23 by miguel            #+#    #+#             */
-/*   Updated: 2023/09/05 16:44:15 by mescobar         ###   ########.fr       */
+/*   Updated: 2023/09/06 11:45:45 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,28 +67,18 @@ static void	ft_elem(t_stack **a, t_stack **b, t_data *l)
 
 static void	ft_push(t_stack **a, t_stack **b, t_data *l)
 {
-	int	i;
-
-	l->print = 0;
-	i = 0;
-	while (i >= 0)
+	l->print = 1;
+	ft_move_both(a, b, l);
+	while (l->opt > 0)
 	{
-		if (l->sign == 0)
-			ft_ra(a, l);
-		else if (l->sign == 1)
-			ft_rra(a, l);
-		i--;
+		if (l->sign_b)
+			ft_rb(b, l);
+		else
+			ft_rrb(b, l);
+		l->opt--;
 	}
 	ft_pb(a, b, l);
-	ft_see_b(b, l);
-	while (i < l->opt)
-	{
-		if (l->sign == 0)
-			ft_rb(b, l);
-		else if (l->sign == 1)
-			ft_rrb(b, l);
-		i++;
-	}
+	ft_max_first(b, l);
 }
 
 void	ft_sort_until_three(t_stack **a, t_stack **b, t_data *l)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_algo_utils3.c                                   :+:      :+:    :+:   */
+/*   ft_algo_utils_3.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 18:29:12 by mescobar          #+#    #+#             */
-/*   Updated: 2023/09/04 09:42:56 by miguel           ###   ########.fr       */
+/*   Updated: 2023/09/06 16:19:47 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,24 @@
 void	ft_rrb(t_stack **a, t_data *l)
 {
 	t_stack	*tmp;
+	int		i;
 
-	if (!(*a))
+	if (!(*a) || !(*a)->next)
 		return ;
+	i = 0;
 	tmp = *a;
-	*a = ft_lstlast(*a);
+	while ((*a)->next)
+	{
+		*a = (*a)->next;
+		i++;
+	}
 	(*a)->next = tmp;
-	(ft_lstlast(tmp))->next = NULL;
+	while (i > 1)
+	{
+		tmp = tmp->next;
+		i--;
+	}
+	tmp->next = NULL;
 	if (l->print == 0)
 		ft_printf("rrb\n");
 }
@@ -31,13 +42,24 @@ void	ft_rrb(t_stack **a, t_data *l)
 void	ft_rra(t_stack **a, t_data *l)
 {
 	t_stack	*tmp;
+	int		i;
 
-	if (!(*a))
+	if (!(*a) || !(*a)->next)
 		return ;
+	i = 0;
 	tmp = *a;
-	*a = ft_lstlast(*a);
+	while ((*a)->next)
+	{
+		*a = (*a)->next;
+		i++;
+	}
 	(*a)->next = tmp;
-	(ft_lstlast(tmp))->next = NULL;
+	while (i > 1)
+	{
+		tmp = tmp->next;
+		i--;
+	}
+	tmp->next = NULL;
 	if (l->print == 0)
 		ft_printf("rra\n");
 }

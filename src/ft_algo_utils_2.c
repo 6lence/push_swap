@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_algo_utils2.c                                   :+:      :+:    :+:   */
+/*   ft_algo_utils_2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 17:52:41 by mescobar          #+#    #+#             */
-/*   Updated: 2023/09/04 10:37:45 by miguel           ###   ########.fr       */
+/*   Updated: 2023/09/06 16:22:57 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,10 @@ void	ft_ra(t_stack **a, t_data *l)
 {
 	t_stack	*tmp;
 
-	if (!(*a))
+	if (!(*a) || !(*a)->next)
 		return ;
 	tmp = *a;
-	*a = ft_lstlast(*a);
-	(*a)->next = tmp;
+	(ft_lstlast(*a))->next = tmp;
 	tmp->next = NULL;
 	if (l->print == 0)
 		ft_printf("ra\n");

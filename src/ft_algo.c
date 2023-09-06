@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_algo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
+/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 17:07:38 by mescobar          #+#    #+#             */
-/*   Updated: 2023/09/05 11:01:57 by mescobar         ###   ########.fr       */
+/*   Updated: 2023/09/06 16:12:54 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,11 @@ void	ft_swap(t_data *l, t_stack **a)
 
 	b = ft_calloc(1, sizeof(t_stack));
 	l->print = 0;
-	if (l->size_a < 3)
+	if (l->size_a < 3 && (*a)->x > (*a)->next->x)
 		ft_sa(a, l);
 	else if (l->size_a == 3)
 		ft_three(a, l);
-	else
+	else if (l->size_a > 3)
 		ft_sort_until_three(a, &b, l);
+	ft_free_stack(&b);
 }

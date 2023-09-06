@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
+/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 13:38:36 by miguel            #+#    #+#             */
-/*   Updated: 2023/09/03 17:27:01 by mescobar         ###   ########.fr       */
+/*   Updated: 2023/09/06 15:59:13 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_push_swap.h"
+
+void	ft_free_stack(t_stack **a)
+{
+	t_stack	*tmp;
+
+	if (*a)
+	{
+		while (*a)
+		{
+			tmp = *a;
+			*a = (*a)->next;
+			tmp->next = NULL;
+			free(tmp);
+		}
+	}
+}
 
 void	ft_free_all(t_data *l)
 {

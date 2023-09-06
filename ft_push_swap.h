@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:20:53 by miguel            #+#    #+#             */
-/*   Updated: 2023/09/05 17:50:20 by miguel           ###   ########.fr       */
+/*   Updated: 2023/09/06 15:59:53 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,12 @@ void	ft_pb(t_stack **a, t_stack **b, t_data *l);
 void	ft_three(t_stack **a, t_data *l);
 void	ft_see_b(t_stack **b, t_data *l);
 void	ft_find_a(t_stack **a, t_data *l);
+void	ft_swap(t_data *l, t_stack **a);
 void	ft_sort_until_three(t_stack **a, t_stack **b, t_data *l);
 void	ft_push_swap(t_data *l, t_stack **a);
+void	ft_push_back(t_stack **a, t_stack **b, t_data *l);
+void	ft_max_first(t_stack **b, t_data *l);
+void	ft_move_in_both(t_stack **a, t_stack **b, t_data *l);
+void	ft_free_stack(t_stack **a);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:15:59 by mescobar          #+#    #+#             */
-/*   Updated: 2023/09/06 11:45:44 by miguel           ###   ########.fr       */
+/*   Updated: 2023/09/06 15:04:10 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,21 @@
 
 void	ft_find_a(t_stack **a, t_data *l)
 {
-	int	i;
+	int		i;
+	t_stack	*tmp;
 
+	tmp = *a;
 	i = 0;
-	while (*a != l->push)
+	while (tmp != l->push)
 	{
-		*a = (*a)->next;
+		tmp = tmp->next;
 		i++;
 	}
 	l->size_a = ft_lstlen(a);
-	l->sign = 0;
+	l->sign_a = 0;
 	if (i > l->size_a / 2)
 	{
-		l->sign = 1;
+		l->sign_a = 1;
 		i = l->size_a - i;
 	}
 }
@@ -52,12 +54,12 @@ void	ft_move_in_both(t_stack **a, t_stack **b, t_data *l)
 	while (l->opt_in_a >= 0)
 	{
 		ft_sign_stacks(a, b, l);
-		if (sign_a == 1 && sign_b == 1 && l->opt_in_a > 0)
+		if (l->sign_a == 1 && l->sign_b == 1 && l->opt_in_a > 0)
 		{
 			ft_rrr(a, b, l);
 			l->opt--;
 		}	
-		else if (sign_a == 0 && sign_b == 0 && l->opt_in_a > 0)
+		else if (l->sign_a == 0 && l->sign_b == 0 && l->opt_in_a > 0)
 		{
 			ft_rr(a, b, l);
 			l->opt--;
@@ -78,7 +80,7 @@ void	ft_max_first(t_stack **b, t_data *l)
 	int	sign;
 	int	i;
 
-	l->max_b = ft_lstmax(b);
+	l->max_b = ft_lstmax(*b);
 	sign = 0;
 	i = ft_lstpos(l->max_b, b);
 	if (i > ft_lstlen(b) / 2)
@@ -98,5 +100,16 @@ void	ft_max_first(t_stack **b, t_data *l)
 
 void	ft_push_back(t_stack **a, t_stack **b, t_data *l)
 {
-	
+	int	min;
+
+	min = l->min_b;
+	if (l->min_a < min)
+		min = l->min_a;
+	while (*b)
+	{
+		while ((*b)->x < (ft_lstlast(*a))->x
+			&& (ft_lstlast(*a))->x > min)
+			ft_rra(a, l);
+		ft_pa(a, b, l);
+	}
 }

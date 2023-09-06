@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 09:40:23 by miguel            #+#    #+#             */
-/*   Updated: 2023/09/06 11:45:45 by miguel           ###   ########.fr       */
+/*   Updated: 2023/09/06 15:02:35 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void	ft_elem(t_stack **a, t_stack **b, t_data *l)
 static void	ft_push(t_stack **a, t_stack **b, t_data *l)
 {
 	l->print = 1;
-	ft_move_both(a, b, l);
+	ft_move_in_both(a, b, l);
 	while (l->opt > 0)
 	{
 		if (l->sign_b)

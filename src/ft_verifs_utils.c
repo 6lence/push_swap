@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_verifs_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
+/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 11:09:49 by mescobar          #+#    #+#             */
-/*   Updated: 2023/09/03 17:27:00 by mescobar         ###   ########.fr       */
+/*   Updated: 2023/09/06 15:22:25 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_repeat_verif(char **str, t_data *l)
 		j = i + 1;
 		while (str[j])
 		{
-			if (ft_strsrch(str[i], str[j]) > 0)
+			if (ft_strnstr(str[i], str[j], ft_strlen(str[j])) != 0)
 				ft_error("The same number cannot exit multiple times", l);
 			j++;
 		}

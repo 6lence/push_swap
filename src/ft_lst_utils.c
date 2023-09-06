@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lst_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
+/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 12:03:27 by mescobar          #+#    #+#             */
-/*   Updated: 2023/09/05 10:52:16 by mescobar         ###   ########.fr       */
+/*   Updated: 2023/09/06 15:24:09 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,37 +41,44 @@ void	ft_lstprint(t_stack **a)
 
 t_stack	*ft_lstlast(t_stack *st)
 {
+	t_stack	*tmp;
+
 	if (!st)
 		return (NULL);
-	while (st->next)
-		st = st->next;
-	return (st);
+	tmp = st;
+	while (tmp->next)
+		tmp = tmp->next;
+	return (tmp);
 }
 
 int	ft_lstmin(t_stack *a)
 {
-	int	ct;
+	int		ct;
+	t_stack	*tmp;
 
 	ct = a->x;
-	while (a)
+	tmp = a;
+	while (tmp)
 	{
-		if (ct > a->x)
-			ct = a->x;
-		a = a->next;
+		if (ct > tmp->x)
+			ct = tmp->x;
+		tmp = tmp->next;
 	}
 	return (ct);
 }
 
 int	ft_lstmax(t_stack *a)
 {
-	int	ct;
+	int		ct;
+	t_stack	*tmp;
 
 	ct = a->x;
-	while (a)
+	tmp = a;
+	while (tmp)
 	{
-		if (ct < a->x)
-			ct = a->x;
-		a = a->next;
+		if (ct < tmp->x)
+			ct = tmp->x;
+		tmp = tmp->next;
 	}
 	return (ct);
 }

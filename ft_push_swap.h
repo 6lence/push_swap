@@ -6,7 +6,7 @@
 /*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:20:53 by miguel            #+#    #+#             */
-/*   Updated: 2023/09/07 01:19:37 by mescobar         ###   ########.fr       */
+/*   Updated: 2023/09/11 00:05:50 by mescobar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_data
 	char	**args;
 }			t_data;
 
+int		ft_sign(t_stack *a, t_data *l);
 int		ft_lstlen(t_stack *a);
 void	ft_lstprint(t_stack **a);
 void	ft_verif(char *str, t_data *l);

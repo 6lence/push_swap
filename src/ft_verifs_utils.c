@@ -6,7 +6,7 @@
 /*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 11:09:49 by mescobar          #+#    #+#             */
-/*   Updated: 2023/09/07 01:02:17 by mescobar         ###   ########.fr       */
+/*   Updated: 2023/09/10 22:54:00 by mescobar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_repeat_verif(char **str, t_data *l)
 		j = i + 1;
 		while (str[j])
 		{
-			if (ft_strnstr(str[i], str[j], ft_strlen(str[j])) != 0)
+			if (ft_atoi(str[i]) == ft_atoi(str[j]))
 				ft_error("The same number cannot exit multiple times", l);
 			j++;
 		}

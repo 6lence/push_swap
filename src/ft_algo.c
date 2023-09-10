@@ -6,11 +6,30 @@
 /*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 17:07:38 by mescobar          #+#    #+#             */
-/*   Updated: 2023/09/07 00:27:05 by mescobar         ###   ########.fr       */
+/*   Updated: 2023/09/10 22:49:21 by mescobar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_push_swap.h"
+
+int	ft_sign(t_stack *a, t_data *l)
+{
+	t_stack	*tmp;
+	int		ct;
+
+	tmp = a;
+	ct = 0;
+	while (tmp->x != l->min_a)
+	{
+		ct++;
+		tmp = tmp->next;
+	}
+	if (ct > ft_lstlen(a) / 2)
+		ct = 1;
+	else
+		ct = 0;
+	return (ct);
+}
 
 void	ft_three(t_stack **a, t_data *l)
 {
@@ -44,7 +63,7 @@ void	ft_swap(t_data *l, t_stack **a)
 {
 	t_stack	*b;
 
-	b = ft_calloc(1, sizeof(t_stack));
+	b = NULL;
 	l->print = 0;
 	if (l->size_a < 3 && (*a)->x > (*a)->next->x)
 		ft_sa(a, l);
@@ -52,5 +71,4 @@ void	ft_swap(t_data *l, t_stack **a)
 		ft_three(a, l);
 	else if (l->size_a > 3)
 		ft_sort_until_three(a, &b, l);
-	ft_free_stack(&b);
 }

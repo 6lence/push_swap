@@ -1,30 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lst_utils_2.c                                   :+:      :+:    :+:   */
+/*   ft_sort_until_three_utils_2.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 14:48:15 by miguel            #+#    #+#             */
-/*   Updated: 2023/09/12 13:36:53 by mescobar         ###   ########.fr       */
+/*   Created: 2023/09/12 13:05:53 by mescobar          #+#    #+#             */
+/*   Updated: 2023/09/14 00:23:48 by mescobar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_push_swap.h"
 
-int	ft_lstpos(int x, t_stack *a)
+int	ft_best_of(int a, int b, t_data *l, int pos)
 {
-	int		i;
+	l->opt_a = pos;
+	if (a >= b)
+	{
+		l->sign_a = 0;
+		return (a);
+	}
+	else
+		l->sign_a = 1;
+	return (b);
+}
+
+t_stack	*ft_mirror(t_stack *a, int i)
+{
 	t_stack	*tmp;
+	int		k;
+	int		len;
 
 	if (!a)
 		return (0);
-	i = 0;
+	k = 0;
 	tmp = a;
-	while (x != tmp->x)
+	len = ft_lstlen(a) - i;
+	while (k < len - 1 && tmp)
 	{
+		k++;
 		tmp = tmp->next;
-		i++;
 	}
-	return (i);
+	return (tmp);
 }

@@ -6,7 +6,7 @@
 /*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 17:52:41 by mescobar          #+#    #+#             */
-/*   Updated: 2023/09/07 00:23:18 by mescobar         ###   ########.fr       */
+/*   Updated: 2023/09/14 00:00:45 by mescobar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	ft_rr(t_stack **a, t_stack **b, t_data *l)
 	ft_ra(a, l);
 	ft_rb(b, l);
 	ft_printf("rr\n");
+	l->print = 0;
 }
 
 //first element of A is push on B

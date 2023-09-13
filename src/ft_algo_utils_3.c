@@ -6,7 +6,7 @@
 /*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 18:29:12 by mescobar          #+#    #+#             */
-/*   Updated: 2023/09/07 00:23:17 by mescobar         ###   ########.fr       */
+/*   Updated: 2023/09/14 00:00:56 by mescobar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,5 @@ void	ft_rrr(t_stack **a, t_stack **b, t_data *l)
 	ft_rra(a, l);
 	ft_rrb(b, l);
 	ft_printf("rrr\n");
+	l->print = 0;
 }

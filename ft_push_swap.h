@@ -6,7 +6,7 @@
 /*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:20:53 by miguel            #+#    #+#             */
-/*   Updated: 2023/09/11 00:05:50 by mescobar         ###   ########.fr       */
+/*   Updated: 2023/09/13 23:31:37 by mescobar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,23 @@ typedef struct s_data
 	t_stack	*push;
 	int		print;
 	int		size_a;
+	int		size_b;
 	int		min_a;
 	int		max_a;
 	int		min_b;
 	int		max_b;
 	int		sign_a;
 	int		sign_b;
+	int		opt_a;
+	int		opt_b;
 	int		opt;
-	int		opt_in_a;
+	t_stack	*best;
 	char	**args;
 }			t_data;
 
-int		ft_sign(t_stack *a, t_data *l);
+int		ft_best_of(int a, int b, t_data *l, int pos);
+t_stack	*ft_mirror(t_stack *a, int i);
+int		ft_sign(int len, int size);
 int		ft_lstlen(t_stack *a);
 void	ft_lstprint(t_stack **a);
 void	ft_verif(char *str, t_data *l);
@@ -49,7 +54,7 @@ void	ft_free_all(t_data *l);
 t_stack	*ft_lstlast(t_stack *st);
 int		ft_lstmax(t_stack *a);
 int		ft_lstmin(t_stack *a);
-int		ft_lstpos(int x, t_stack **a);
+int		ft_lstpos(int x, t_stack *a);
 void	ft_sa(t_stack **a, t_data *l);
 void	ft_sb(t_stack **a, t_data *l);
 void	ft_ss(t_stack **a, t_stack **b, t_data *l);
@@ -63,7 +68,7 @@ void	ft_pa(t_stack **a, t_stack **b, t_data *l);
 void	ft_pb(t_stack **a, t_stack **b, t_data *l);
 void	ft_three(t_stack **a, t_data *l);
 void	ft_see_b(t_stack **b, t_data *l);
-void	ft_find_a(t_stack **a, t_data *l);
+int		ft_find_a(t_stack **a, t_data *l);
 void	ft_swap(t_data *l, t_stack **a);
 void	ft_sort_until_three(t_stack **a, t_stack **b, t_data *l);
 void	ft_push_swap(t_data *l, t_stack **a);

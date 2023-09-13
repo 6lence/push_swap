@@ -6,29 +6,18 @@
 /*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 17:07:38 by mescobar          #+#    #+#             */
-/*   Updated: 2023/09/10 22:49:21 by mescobar         ###   ########.fr       */
+/*   Updated: 2023/09/13 23:50:16 by mescobar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_push_swap.h"
 
-int	ft_sign(t_stack *a, t_data *l)
+int	ft_sign(int len, int size)
 {
-	t_stack	*tmp;
-	int		ct;
-
-	tmp = a;
-	ct = 0;
-	while (tmp->x != l->min_a)
-	{
-		ct++;
-		tmp = tmp->next;
-	}
-	if (ct > ft_lstlen(a) / 2)
-		ct = 1;
+	if (len > size / 2)
+		return (1);
 	else
-		ct = 0;
-	return (ct);
+		return (0);
 }
 
 void	ft_three(t_stack **a, t_data *l)

@@ -6,19 +6,11 @@
 /*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 17:07:38 by mescobar          #+#    #+#             */
-/*   Updated: 2023/09/13 23:50:16 by mescobar         ###   ########.fr       */
+/*   Updated: 2023/09/17 12:36:21 by mescobar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_push_swap.h"
-
-int	ft_sign(int len, int size)
-{
-	if (len > size / 2)
-		return (1);
-	else
-		return (0);
-}
+#include "../includes/ft_push_swap.h"
 
 void	ft_three(t_stack **a, t_data *l)
 {

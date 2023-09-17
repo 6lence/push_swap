@@ -1,19 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_algo_utils_3.c                                  :+:      :+:    :+:   */
+/*   checker_instruct.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/03 18:29:12 by mescobar          #+#    #+#             */
-/*   Updated: 2023/09/17 12:36:14 by mescobar         ###   ########.fr       */
+/*   Created: 2023/09/17 11:45:45 by mescobar          #+#    #+#             */
+/*   Updated: 2023/09/17 12:37:20 by mescobar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_push_swap.h"
 
-//push down every element of B, last become first
-void	ft_rrb(t_stack **a, t_data *l)
+void	ft_ra_checker(t_stack **a)
+{
+	t_stack	*tmp;
+
+	if (!(*a) || !(*a)->next)
+		return ;
+	tmp = *a;
+	while ((*a)->next)
+		*a = (*a)->next;
+	(*a)->next = tmp;
+	*a = tmp->next;
+	tmp->next = NULL;
+}
+
+void	ft_rr_checker(t_stack **a, t_stack **b)
+{
+	ft_ra_checker(a);
+	ft_ra_checker(b);
+}
+
+void	ft_rra_checker(t_stack **a)
 {
 	t_stack	*tmp;
 	int		i;
@@ -34,42 +53,22 @@ void	ft_rrb(t_stack **a, t_data *l)
 		i--;
 	}
 	tmp->next = NULL;
-	if (l->print == 0)
-		ft_printf("rrb\n");
 }
 
-//push down every element of A, last become first
-void	ft_rra(t_stack **a, t_data *l)
+void	ft_rrr_checker(t_stack **a, t_stack **b)
+{
+	ft_rra_checker(a);
+	ft_rra_checker(b);
+}
+
+void	ft_sa_checker(t_stack **a)
 {
 	t_stack	*tmp;
-	int		i;
 
 	if (!(*a) || !(*a)->next)
 		return ;
-	i = 0;
 	tmp = *a;
-	while ((*a)->next)
-	{
-		*a = (*a)->next;
-		i++;
-	}
+	*a = (*a)->next;
+	tmp->next = (*a)->next;
 	(*a)->next = tmp;
-	while (i > 1)
-	{
-		tmp = tmp->next;
-		i--;
-	}
-	tmp->next = NULL;
-	if (l->print == 0)
-		ft_printf("rra\n");
-}
-
-//push down every element of A and B, first become last
-void	ft_rrr(t_stack **a, t_stack **b, t_data *l)
-{
-	l->print = 1;
-	ft_rra(a, l);
-	ft_rrb(b, l);
-	ft_printf("rrr\n");
-	l->print = 0;
 }

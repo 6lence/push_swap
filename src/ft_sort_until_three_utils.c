@@ -6,11 +6,11 @@
 /*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:15:59 by mescobar          #+#    #+#             */
-/*   Updated: 2023/09/14 00:22:51 by mescobar         ###   ########.fr       */
+/*   Updated: 2023/09/17 12:36:38 by mescobar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_push_swap.h"
+#include "../includes/ft_push_swap.h"
 
 int	ft_find_a(t_stack **a, t_data *l)
 {

@@ -6,11 +6,11 @@
 /*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 17:52:41 by mescobar          #+#    #+#             */
-/*   Updated: 2023/09/14 00:00:45 by mescobar         ###   ########.fr       */
+/*   Updated: 2023/09/17 12:36:09 by mescobar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_push_swap.h"
+#include "../includes/ft_push_swap.h"
 
 //push up every element of B, first become last
 void	ft_rb(t_stack **a, t_data *l)

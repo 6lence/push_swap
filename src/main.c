@@ -6,11 +6,11 @@
 /*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:12:08 by miguel            #+#    #+#             */
-/*   Updated: 2023/09/11 00:05:41 by mescobar         ###   ########.fr       */
+/*   Updated: 2023/09/17 12:35:59 by mescobar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_push_swap.h"
+#include "../includes/ft_push_swap.h"
 
 static void	ft_add_back(char *nb, t_stack **a, t_data *l)
 {

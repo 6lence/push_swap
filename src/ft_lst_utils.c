@@ -6,11 +6,11 @@
 /*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 12:03:27 by mescobar          #+#    #+#             */
-/*   Updated: 2023/09/07 01:18:09 by mescobar         ###   ########.fr       */
+/*   Updated: 2023/09/17 12:36:33 by mescobar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_push_swap.h"
+#include "../includes/ft_push_swap.h"
 
 int	ft_lstlen(t_stack *a)
 {

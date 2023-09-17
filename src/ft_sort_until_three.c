@@ -6,72 +6,93 @@
 /*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 09:40:23 by miguel            #+#    #+#             */
-/*   Updated: 2023/09/14 00:45:43 by mescobar         ###   ########.fr       */
+/*   Updated: 2023/09/17 12:36:40 by mescobar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_push_swap.h"
+#include "../includes/ft_push_swap.h"
 
 //search the optimal position of A in B
-static int	ft_opt(t_stack *a, t_stack *b, t_data *l)
+int	ft_opt(t_stack *a, t_stack *b, t_data *l)
 {
-	int		count;
-	t_stack	*tmp_b;
+	int		i;
+	t_stack	*tp_a;
+	t_stack	*tp_b;
 
-	tmp_b = b;
-	l->max_b = ft_lstmax(b);
-	l->min_b = ft_lstmin(b);
-	if (a->x > l->max_b || a->x < l->min_b)
+	ft_printf("Receive: %d\n", a->x);
+	tp_a = a;
+	tp_b = b;
+	l->max_b = ft_lstmax(tp_b);
+	l->min_b = ft_lstmin(tp_b);
+	if (tp_a->x < l->min_b || tp_a->x > l->max_b)
 		return (ft_lstpos(l->max_b, b));
-	count = 0;
-	while (!(a->x < tmp_b->x && a->x > tmp_b->x) && tmp_b->next)
+	i = 0;
+	while (tp_b->next)
 	{
-		count++;
-		tmp_b = tmp_b->next;
+		if ((tp_b->x == l->min_b && tp_b->next->x == l->max_b)
+			|| (tp_b->x == l->max_b && tp_b->next->x == l->min_b))
+			i++;
+		else if ((tp_a->x < tp_b->x && tp_a->x > tp_b->next->x))
+			return (++i);
+		else
+			i++;
+		tp_b = tp_b->next;
 	}
-	return (count);
+	return (i);
 }
 
 //search the optimal element on A to put in B
 static void	ft_elem(t_stack **a, t_stack **b, t_data *l)
 {
 	t_stack	*tmp;
-	int		i;
+	int		tmp_sign;
+	int		tmp_opt;
 
 	tmp = *a;
-	l->opt_b = ft_best_of(ft_opt(tmp, *b, l),
-			ft_opt(ft_mirror(tmp, 0), *b, l), l, 0);
-	i = 1;
-	while (tmp->next && i < l->opt_b)
+	ft_reinit(*a, *b, tmp, l);
+	tmp_opt = ft_opt(ft_mirror(tmp, 0), *b, l);
+	if (tmp_opt > l->size_b / 2)
 	{
-		l->opt_b = ft_best_of(ft_opt(tmp, *b, l),
-				ft_opt(ft_mirror(tmp, 0), *b, l), l, i);
-		i++;
+		tmp_sign = 1;
+		tmp_opt = l->size_b - tmp_opt;
+	}
+	if ((tmp_opt + l->mirror < l->opt_b + l->opt_a))
+	{
+		l->opt_a = l->mirror;
+		l->sign_a = 1;
+		l->opt_b = tmp_opt;
+	}
+	if ((tmp_opt + l->mirror == l->opt_b + l->opt_a)
+		&& l->sign_a == tmp_sign && tmp_sign == 1)
+	{
+		l->sign_a = 1;
+		l->opt_a = l->mirror;
+		l->opt_b = tmp_opt;
+	}
+	else
+		ft_reinit(*a, *b, tmp, l);
+	ft_printf("l->opt_a: %d, l->opt_b: %d, tmp_opt: %d, l->mirror: %d\n",
+		l->opt_a, l->opt_b, tmp_opt, l->mirror);
+	ft_printf("sign_a: %d, sign_b: %d\n", l->sign_a, l->sign_b);
+	l->pos = 1;
+	tmp = tmp->next;
+	while (tmp->next && l->pos < l->opt_b)
+	{
+		ft_printf("I enter\n");
+		ft_reinit(*a, *b, tmp, l);
+		ft_best_of(ft_opt(tmp, *b, l),
+			ft_opt(ft_mirror(tmp, l->pos), *b, l), l->pos, l);
 		tmp = tmp->next;
+		l->pos++;
 	}
 }
 
 //push the optimal element from A to b
 static void	ft_push(t_stack **a, t_stack **b, t_data *l)
 {
-	l->size_b = ft_lstlen(*b);
-	l->size_a = ft_lstlen(*a);
-	l->sign_b = ft_sign(l->opt_b, l->size_b);
-	if (l->sign_b == 1)
-	{
-		l->opt_b = l->size_b - l->opt_b;
-		if (l->opt_b < l->size_b / 2)
-			l->sign_b = 0;
-	}
-	if (l->opt_a > l->size_a / 2)
-	{
-		l->opt_a = l->size_a - l->opt_a;
-		if (l->opt_a < l->size_a / 2)
-			l->sign_a = 0;
-	}
-	ft_printf("position A: %d, position B: %d\n", l->opt_a, l->opt_b);
-	ft_printf("size A: %d, size B: %d\n", l->size_a, l->size_b);
-	ft_printf("signe A: %d,  signe B: %d\n", l->sign_a, l->sign_b);
+	//ft_printf("\nposition A: %d, position B: %d\n", l->opt_a, l->opt_b);
+	//ft_printf("size A: %d, size B: %d\n", l->size_a, l->size_b);
+	//ft_printf("signe A: %d,  signe B: %d\n\n", l->sign_a, l->sign_b);
 	while (l->opt_a > 0)
 	{
 		l->print = 0;

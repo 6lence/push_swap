@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_algo_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 17:09:49 by mescobar          #+#    #+#             */
-/*   Updated: 2023/09/04 10:37:08 by miguel           ###   ########.fr       */
+/*   Updated: 2023/09/17 12:36:18 by mescobar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_push_swap.h"
+#include "../includes/ft_push_swap.h"
 
 //reverse 2 first elements from stack B
 void	ft_sb(t_stack **a, t_data *l)
@@ -26,7 +26,6 @@ void	ft_sb(t_stack **a, t_data *l)
 	if (l->print == 0)
 		ft_printf("sb\n");
 }
-
 
 //reverse 2 first elements from stack A
 void	ft_sa(t_stack **a, t_data *l)

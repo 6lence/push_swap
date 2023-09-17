@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 13:38:36 by miguel            #+#    #+#             */
-/*   Updated: 2023/09/06 15:59:13 by miguel           ###   ########.fr       */
+/*   Updated: 2023/09/17 12:36:26 by mescobar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_push_swap.h"
+#include "../includes/ft_push_swap.h"
 
 void	ft_free_stack(t_stack **a)
 {

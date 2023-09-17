@@ -6,11 +6,11 @@
 /*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 14:48:15 by miguel            #+#    #+#             */
-/*   Updated: 2023/09/12 13:36:53 by mescobar         ###   ########.fr       */
+/*   Updated: 2023/09/17 12:36:29 by mescobar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_push_swap.h"
+#include "../includes/ft_push_swap.h"
 
 int	ft_lstpos(int x, t_stack *a)
 {

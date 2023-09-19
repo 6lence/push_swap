@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 09:40:23 by miguel            #+#    #+#             */
-/*   Updated: 2023/09/19 13:49:45 by miguel           ###   ########.fr       */
+/*   Updated: 2023/09/19 15:22:44 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	ft_opt(t_stack *a, t_stack *b, t_data *l)
 }
 
 //search the optimal element on A to put in B
-static void	ft_elem(t_stack **a, t_stack **b, t_data *l)	
+static void	ft_elem(t_stack **a, t_stack **b, t_data *l)
 {
 	t_stack	*tmp;
 
@@ -72,9 +72,6 @@ static void	ft_elem(t_stack **a, t_stack **b, t_data *l)
 //push the optimal element from A to b
 static void	ft_push(t_stack **a, t_stack **b, t_data *l)
 {
-	//ft_printf("\nposition A: %d, position B: %d\n", l->opt_a, l->opt_b);
-	//ft_printf("size A: %d, size B: %d\n", l->size_a, l->size_b);
-	//ft_printf("signe A: %d,  signe B: %d\n\n", l->sign_a, l->sign_b);
 	while (l->opt_a > 0)
 	{
 		l->print = 0;
@@ -137,12 +134,11 @@ void	ft_sort_until_three(t_stack **a, t_stack **b, t_data *l)
 	ft_max_first(b, l);
 	while (ft_lstlen(*a) > 3)
 	{
+
 		l->size_a = ft_lstlen(*a);
 		ft_push_min(a, b, l);
 	}
 	if (ft_lstlen(*a) == 3)
 		ft_three(a, l);
-	else if ((*a)->x > (*a)->next->x && ft_lstlen(*a) == 2)
-		ft_sa(a, l);
 	ft_push_back(a, b, l);
 }

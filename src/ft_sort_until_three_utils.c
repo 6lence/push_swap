@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:15:59 by mescobar          #+#    #+#             */
-/*   Updated: 2023/09/19 13:40:33 by miguel           ###   ########.fr       */
+/*   Updated: 2023/09/19 15:22:21 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ void	ft_six_percent(t_stack **a, t_stack **b, t_data *l)
 {
 	int	i;
 
-	i = 3;
-	while (l->six_percent)
+	i = 2;
+	while ((*b)->x != ft_lstmax(*b))
 	{
 		while ((*b)->x < ft_lstlast(*a)->x && i-- > 0)
 			ft_rra(a, l);

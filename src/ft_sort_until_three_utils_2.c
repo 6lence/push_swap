@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 13:05:53 by mescobar          #+#    #+#             */
-/*   Updated: 2023/09/19 13:49:46 by miguel           ###   ########.fr       */
+/*   Updated: 2023/09/19 14:38:52 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,14 @@ void	ft_best_of(int pos_b1, int pos_b2, int pos_a, t_data *l)
 	tot_b1 = pos_b1 + pos_a;
 	tot_b2 = pos_b2 + l->mirror;
 	if (((tot_b2 < tot_b1 && tot_b2 < total)
-			|| (tot_b2 <= total && 1 == tmp_sign1)))
+			|| (tot_b2 < total && 1 == tmp_sign2)))
 	{
 		l->sign_b = tmp_sign2;
 		l->opt_a = l->mirror;
 		l->opt_b = pos_b2;
 		l->sign_a = 1;
 	}
-	else if ((tot_b1 < total || (tot_b2 <= total && tmp_sign1 == 0)))
+	else if ((tot_b1 < total || (tot_b1 < total && tmp_sign1 == 0)))
 	{
 		l->sign_b = tmp_sign1;
 		l->opt_a = pos_a;

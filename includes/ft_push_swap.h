@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_push_swap.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
+/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:20:53 by miguel            #+#    #+#             */
-/*   Updated: 2023/09/17 12:37:12 by mescobar         ###   ########.fr       */
+/*   Updated: 2023/09/19 11:45:31 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # include "../src/ft_printf/ft_printf.h"
 # include <stdlib.h>
+
+# define INT_MAX 2147483647
+# define INT_MIN -2147483648
 
 typedef struct s_stack
 {
@@ -39,12 +42,14 @@ typedef struct s_data
 	int		opt_b;
 	int		mirror;
 	int		pos;
+	int		six_percent;
 	t_stack	*best;
 	char	**args;
 }			t_data;
 
+void	ft_push_min(t_stack **a, t_stack **b, t_data *l);
+int		ft_sorted(t_stack **a);
 int		ft_opt(t_stack *a, t_stack *b, t_data *l);
-void	ft_reinit(t_stack *a, t_stack *b, t_stack *elem, t_data *l); 
 void	ft_best_of(int pos_b1, int pos_b2, int pos_a, t_data *l);
 t_stack	*ft_mirror(t_stack *a, int i);
 int		ft__pos_sign(int len, t_data *l, char c);
@@ -71,14 +76,14 @@ void	ft_pa(t_stack **a, t_stack **b, t_data *l);
 void	ft_pb(t_stack **a, t_stack **b, t_data *l);
 void	ft_three(t_stack **a, t_data *l);
 void	ft_see_b(t_stack **b, t_data *l);
-int		ft_find_a(t_stack **a, t_data *l);
 void	ft_swap(t_data *l, t_stack **a);
 void	ft_sort_until_three(t_stack **a, t_stack **b, t_data *l);
 void	ft_push_swap(t_data *l, t_stack **a);
 void	ft_push_back(t_stack **a, t_stack **b, t_data *l);
 void	ft_max_first(t_stack **b, t_data *l);
-void	ft_move_in_both(t_stack **a, t_stack **b, t_data *l);
+int	ft_find(int d, t_stack *a);
 void	ft_free_stack(t_stack **a);
+long int	ft_atol(const char *str);
 
 //checker:
 void	ft_verif_checker(char *str);

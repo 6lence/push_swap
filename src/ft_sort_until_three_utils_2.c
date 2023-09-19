@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sort_until_three_utils_2.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
+/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 13:05:53 by mescobar          #+#    #+#             */
-/*   Updated: 2023/09/17 12:36:35 by mescobar         ###   ########.fr       */
+/*   Updated: 2023/09/19 13:49:46 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,27 +29,39 @@ int	ft_pos_sign(int pos, t_data *l, char c)
 
 void	ft_best_of(int pos_b1, int pos_b2, int pos_a, t_data *l)
 {
+	int	tmp_sign1;
+	int	tmp_sign2;
 	int	tot_b1;
 	int	tot_b2;
 	int	total;
 
-	if (pos_b1 > l->size_b || pos_b2 > l->size_b)
-		l->sign_b = 1;
+	tmp_sign1 = 0;
+	tmp_sign2 = 0;
 	if (pos_b1 > l->size_b / 2)
+	{
 		pos_b1 = l->size_b - pos_b1;
+		tmp_sign1 = 1;
+	}
 	if (pos_b2 > l->size_b / 2)
+	{
 		pos_b2 = l->size_b - pos_b2;
+		tmp_sign2 = 1;
+	}
+	l->mirror = l->size_a - (l->size_a - pos_a);
 	total = l->opt_b + l->opt_a;
 	tot_b1 = pos_b1 + pos_a;
 	tot_b2 = pos_b2 + l->mirror;
-	if ((tot_b2 < tot_b1 && tot_b2 < total))
+	if (((tot_b2 < tot_b1 && tot_b2 < total)
+			|| (tot_b2 <= total && 1 == tmp_sign1)))
 	{
+		l->sign_b = tmp_sign2;
 		l->opt_a = l->mirror;
 		l->opt_b = pos_b2;
 		l->sign_a = 1;
 	}
-	else if (tot_b1 < total)
+	else if ((tot_b1 < total || (tot_b2 <= total && tmp_sign1 == 0)))
 	{
+		l->sign_b = tmp_sign1;
 		l->opt_a = pos_a;
 		l->opt_b = pos_b1;
 		l->sign_a = 0;
@@ -75,18 +87,37 @@ t_stack	*ft_mirror(t_stack *a, int i)
 	return (tmp);
 }
 
-void	ft_reinit(t_stack *a, t_stack *b, t_stack *elem, t_data *l)
+int	ft_sorted(t_stack **a)
 {
-	l->size_a = ft_lstlen(a);
-	l->size_b = ft_lstlen(b);
-	l->sign_a = 0;
-	l->sign_b = 0;
-	l->opt_a = 0;
-	l->mirror = l->size_a - (l->size_a - l->pos);
-	l->opt_b = ft_opt(elem, b, l);
-	if (l->opt_b > l->size_b / 2)
+	t_stack	*tmp;
+
+	tmp = *a;
+	while (tmp->next)
 	{
-		l->opt_b = l->size_b - 1;
-		l->sign_b = 1;
+		if (tmp->x < tmp->next->x)
+			tmp = tmp->next;
+		else
+			return (0);
 	}
+	return (1);
+}
+
+void	ft_push_min(t_stack **a, t_stack **b, t_data *l)
+{
+	l->pos = ft_find(ft_lstmin(*a), *a);
+	l->sign_a = 0;
+	if (l->pos > l->size_a / 2)
+	{
+		l->pos = l->size_a - l->pos;
+		l->sign_a = 1;
+	}
+	while (l->pos)
+	{
+		if (l->sign_a == 1)
+			ft_rra(a, l);
+		else
+			ft_ra(a, l);
+		l->pos--;
+	}
+	ft_pb(a, b, l);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sort_until_three.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
+/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 09:40:23 by miguel            #+#    #+#             */
-/*   Updated: 2023/09/17 12:36:40 by mescobar         ###   ########.fr       */
+/*   Updated: 2023/09/19 13:49:45 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,16 @@ int	ft_opt(t_stack *a, t_stack *b, t_data *l)
 	t_stack	*tp_a;
 	t_stack	*tp_b;
 
-	ft_printf("Receive: %d\n", a->x);
 	tp_a = a;
 	tp_b = b;
 	l->max_b = ft_lstmax(tp_b);
 	l->min_b = ft_lstmin(tp_b);
 	if (tp_a->x < l->min_b || tp_a->x > l->max_b)
 		return (ft_lstpos(l->max_b, b));
+	if (tp_a->x > tp_b->x && tp_a->x < ft_lstlast(tp_b)->x
+		&& (tp_b->x != l->min_b || tp_b->x != l->max_b)
+		&& (ft_lstlast(tp_b)->x != l->min_b || ft_lstlast(tp_b)->x != l->max_b))
+		return (0);
 	i = 0;
 	while (tp_b->next)
 	{
@@ -42,46 +45,25 @@ int	ft_opt(t_stack *a, t_stack *b, t_data *l)
 }
 
 //search the optimal element on A to put in B
-static void	ft_elem(t_stack **a, t_stack **b, t_data *l)
+static void	ft_elem(t_stack **a, t_stack **b, t_data *l)	
 {
 	t_stack	*tmp;
-	int		tmp_sign;
-	int		tmp_opt;
 
 	tmp = *a;
-	ft_reinit(*a, *b, tmp, l);
-	tmp_opt = ft_opt(ft_mirror(tmp, 0), *b, l);
-	if (tmp_opt > l->size_b / 2)
+	l->pos = 0;
+	l->sign_b = 0;
+	l->opt_b = ft_opt(tmp, *b, l);
+	if (l->opt_b > l->size_b / 2)
 	{
-		tmp_sign = 1;
-		tmp_opt = l->size_b - tmp_opt;
+		l->opt_b = l->size_b - l->opt_b;
+		l->sign_b = 1;
 	}
-	if ((tmp_opt + l->mirror < l->opt_b + l->opt_a))
-	{
-		l->opt_a = l->mirror;
-		l->sign_a = 1;
-		l->opt_b = tmp_opt;
-	}
-	if ((tmp_opt + l->mirror == l->opt_b + l->opt_a)
-		&& l->sign_a == tmp_sign && tmp_sign == 1)
-	{
-		l->sign_a = 1;
-		l->opt_a = l->mirror;
-		l->opt_b = tmp_opt;
-	}
-	else
-		ft_reinit(*a, *b, tmp, l);
-	ft_printf("l->opt_a: %d, l->opt_b: %d, tmp_opt: %d, l->mirror: %d\n",
-		l->opt_a, l->opt_b, tmp_opt, l->mirror);
-	ft_printf("sign_a: %d, sign_b: %d\n", l->sign_a, l->sign_b);
 	l->pos = 1;
 	tmp = tmp->next;
-	while (tmp->next && l->pos < l->opt_b)
+	while (tmp->next && l->pos < l->opt_b + l->opt_a)
 	{
-		ft_printf("I enter\n");
-		ft_reinit(*a, *b, tmp, l);
 		ft_best_of(ft_opt(tmp, *b, l),
-			ft_opt(ft_mirror(tmp, l->pos), *b, l), l->pos, l);
+			ft_opt(ft_mirror(tmp, l->pos - 1), *b, l), l->pos, l);
 		tmp = tmp->next;
 		l->pos++;
 	}
@@ -144,15 +126,23 @@ void	ft_sort_until_three(t_stack **a, t_stack **b, t_data *l)
 	ft_pb(a, b, l);
 	ft_pb(a, b, l);
 	ft_2b(b, l);
-	while (ft_lstlen(*a) > 3)
+	l->six_percent = (6 * ft_lstlen(*a) / 100);
+	while (ft_lstlen(*a) > l->six_percent)
 	{
+		l->size_a = ft_lstlen(*a);
+		l->size_b = ft_lstlen(*b);
 		ft_elem(a, b, l);
 		ft_push(a, b, l);
+	}
+	ft_max_first(b, l);
+	while (ft_lstlen(*a) > 3)
+	{
+		l->size_a = ft_lstlen(*a);
+		ft_push_min(a, b, l);
 	}
 	if (ft_lstlen(*a) == 3)
 		ft_three(a, l);
 	else if ((*a)->x > (*a)->next->x && ft_lstlen(*a) == 2)
 		ft_sa(a, l);
-	ft_max_first(b, l);
 	ft_push_back(a, b, l);
 }

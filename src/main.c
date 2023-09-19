@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
+/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:12:08 by miguel            #+#    #+#             */
-/*   Updated: 2023/09/17 12:35:59 by mescobar         ###   ########.fr       */
+/*   Updated: 2023/09/18 16:36:25 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,10 @@ int	main(int argc, char **argv)
 	else if (argc > 2)
 		ft_init_args(argv + 1, &a, l);
 	ft_init(l, &a);
-	ft_swap(l, &a);
+	if (!ft_sorted(&a))
+		ft_swap(l, &a);
 	ft_free_all(l);
-	ft_free_stack(&a);
+	if (a)
+		ft_free_stack(&a);
 	return (0);
 }

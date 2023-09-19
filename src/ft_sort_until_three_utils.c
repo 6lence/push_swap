@@ -3,33 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sort_until_three_utils.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
+/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:15:59 by mescobar          #+#    #+#             */
-/*   Updated: 2023/09/17 12:36:38 by mescobar         ###   ########.fr       */
+/*   Updated: 2023/09/19 13:40:33 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_push_swap.h"
-
-int	ft_find_a(t_stack **a, t_data *l)
-{
-	int		i;
-	t_stack	*tmp;
-
-	if (!(*a))
-		return (0);
-	tmp = *a;
-	i = 0;
-	while (i != l->opt_a && tmp->next)
-	{
-		tmp = tmp->next;
-		i++;
-	}
-	if (l->sign_a == 1)
-		return (ft_lstlen(*a) - i);
-	return (i);
-}
 
 void	ft_sign_stacks(t_stack **a, t_stack **b, t_data *l)
 {
@@ -47,11 +28,21 @@ void	ft_sign_stacks(t_stack **a, t_stack **b, t_data *l)
 	}
 }
 
-void	ft_move_in_both(t_stack **a, t_stack **b, t_data *l)
+int	ft_find(int d, t_stack *a)
 {
-	(void)a;
-	(void)b;
-	(void)l;
+	t_stack	*tmp;
+	int		i;
+
+	tmp = a;
+	i = 0;
+	while (tmp->next)
+	{
+		if (tmp->x == d)
+			return (i);
+		tmp = tmp->next;
+		i++;
+	}
+	return (i);
 }
 
 void	ft_max_first(t_stack **b, t_data *l)
@@ -78,9 +69,30 @@ void	ft_max_first(t_stack **b, t_data *l)
 	}
 }
 
+void	ft_six_percent(t_stack **a, t_stack **b, t_data *l)
+{
+	int	i;
+
+	i = 3;
+	while (l->six_percent)
+	{
+		while ((*b)->x < ft_lstlast(*a)->x && i-- > 0)
+			ft_rra(a, l);
+		ft_pa(a, b, l);
+		l->six_percent--;
+	}
+}
+
 void	ft_push_back(t_stack **a, t_stack **b, t_data *l)
 {
-	(void)a;
-	(void)b;
-	(void)l;
+	int	i;
+
+	i = l->six_percent;
+	ft_six_percent(a, b, l);
+	while ((*b))
+	{
+		while ((*b)->x < ft_lstlast(*a)->x && i-- > 0)
+			ft_rra(a, l);
+		ft_pa(a, b, l);
+	}
 }

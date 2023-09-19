@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
+/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 11:06:49 by mescobar          #+#    #+#             */
-/*   Updated: 2023/09/17 12:35:58 by mescobar         ###   ########.fr       */
+/*   Updated: 2023/09/18 16:36:41 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,22 @@ static void	ft_init_str_checker(char *argv, t_stack **a)
 	char	**args;
 
 	args = ft_split(argv, ' ');
+	if (!args[1] && args[0])
+	{
+		free(args[0]);
+		free(args);
+		ft_printf("Try more than one element.\n");
+		exit(EXIT_FAILURE);
+	}
 	ft_verif_args_checker(args);
 	*a = NULL;
 	i = 0;
 	while (args[i])
 	{
 		ft_verif_checker(args[i]);
-		ft_add_back_checker(args[i], a);
+		ft_add_back_checker(args[i++], a);
 	}
+	free(args);
 }
 
 static void	ft_init_args_checker(char **argv, t_stack **a)
@@ -91,7 +99,9 @@ int	main(int argc, char **argv)
 		ft_printf("KO\n");
 	else
 		ft_printf("OK\n");
-	ft_free_stack(&a);
-	ft_free_stack(&b);
+	if (a)
+		ft_free_stack(&a);
+	if (b)
+		ft_free_stack(&b);
 	return (0);
 }

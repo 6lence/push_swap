@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 09:40:23 by miguel            #+#    #+#             */
-/*   Updated: 2023/09/19 15:22:44 by miguel           ###   ########.fr       */
+/*   Updated: 2023/09/19 15:32:31 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,4 +141,6 @@ void	ft_sort_until_three(t_stack **a, t_stack **b, t_data *l)
 	if (ft_lstlen(*a) == 3)
 		ft_three(a, l);
 	ft_push_back(a, b, l);
+	while ((*a)->x != ft_lstmin(*a))
+		ft_rra(a, l);
 }

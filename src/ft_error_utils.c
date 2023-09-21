@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 13:38:36 by miguel            #+#    #+#             */
-/*   Updated: 2023/09/18 15:24:19 by miguel           ###   ########.fr       */
+/*   Updated: 2023/09/20 13:50:01 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,6 @@ void	ft_free_all(t_data *l)
 void	ft_error(char *str, t_data *l)
 {
 	ft_free_all(l);
-	perror(str);
+	ft_printf("%s\n", str);
 	exit(EXIT_FAILURE);
 }

@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 09:40:23 by miguel            #+#    #+#             */
-/*   Updated: 2023/09/19 15:32:31 by miguel           ###   ########.fr       */
+/*   Updated: 2023/09/20 14:55:44 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 //search the optimal position of A in B
 int	ft_opt(t_stack *a, t_stack *b, t_data *l)
 {
-	int		i;
 	t_stack	*tp_a;
 	t_stack	*tp_b;
 
@@ -29,19 +28,7 @@ int	ft_opt(t_stack *a, t_stack *b, t_data *l)
 		&& (tp_b->x != l->min_b || tp_b->x != l->max_b)
 		&& (ft_lstlast(tp_b)->x != l->min_b || ft_lstlast(tp_b)->x != l->max_b))
 		return (0);
-	i = 0;
-	while (tp_b->next)
-	{
-		if ((tp_b->x == l->min_b && tp_b->next->x == l->max_b)
-			|| (tp_b->x == l->max_b && tp_b->next->x == l->min_b))
-			i++;
-		else if ((tp_a->x < tp_b->x && tp_a->x > tp_b->next->x))
-			return (++i);
-		else
-			i++;
-		tp_b = tp_b->next;
-	}
-	return (i);
+	return (ft_opt_utils(tp_a, tp_b, l));
 }
 
 //search the optimal element on A to put in B
@@ -72,37 +59,8 @@ static void	ft_elem(t_stack **a, t_stack **b, t_data *l)
 //push the optimal element from A to b
 static void	ft_push(t_stack **a, t_stack **b, t_data *l)
 {
-	while (l->opt_a > 0)
-	{
-		l->print = 0;
-		if (l->sign_a == l->sign_b && l->sign_a == 1 && l->opt_b > 0)
-		{
-			ft_rrr(a, b, l);
-			l->opt_b--;
-		}
-		else if (l->sign_a == l->sign_b && l->sign_a == 0 && l->opt_b > 0)
-		{
-			ft_rr(a, b, l);
-			l->opt_b--;
-		}
-		else
-		{
-			if (l->sign_a == 1)
-				ft_rra(a, l);
-			else
-				ft_ra(a, l);
-		}
-		l->opt_a--;
-	}
-	while (l->opt_b > 0)
-	{
-		l->print = 0;
-		if (l->sign_b == 1)
-			ft_rrb(b, l);
-		else
-			ft_rb(b, l);
-		l->opt_b--;
-	}
+	ft_move_in_a(a, b, l);
+	ft_move_in_b(b, l);
 	l->print = 0;
 	ft_pb(a, b, l);
 }
@@ -123,7 +81,7 @@ void	ft_sort_until_three(t_stack **a, t_stack **b, t_data *l)
 	ft_pb(a, b, l);
 	ft_pb(a, b, l);
 	ft_2b(b, l);
-	l->six_percent = (6 * ft_lstlen(*a) / 100);
+	l->six_percent = (9 * ft_lstlen(*a) / 100);
 	while (ft_lstlen(*a) > l->six_percent)
 	{
 		l->size_a = ft_lstlen(*a);
@@ -134,7 +92,6 @@ void	ft_sort_until_three(t_stack **a, t_stack **b, t_data *l)
 	ft_max_first(b, l);
 	while (ft_lstlen(*a) > 3)
 	{
-
 		l->size_a = ft_lstlen(*a);
 		ft_push_min(a, b, l);
 	}

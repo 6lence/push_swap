@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 11:09:49 by mescobar          #+#    #+#             */
-/*   Updated: 2023/09/18 14:38:04 by miguel           ###   ########.fr       */
+/*   Updated: 2023/09/20 14:32:25 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,32 +45,61 @@ void	ft_repeat_verif(char **str, t_data *l)
 	i = 0;
 	while (str[i])
 	{
+		if (ft_atol(str[i]) > INT_MAX || ft_atol(str[i]) < INT_MIN)
+			ft_error("Error", l);
 		j = i + 1;
 		while (str[j])
 		{
 			if (ft_atol(str[i]) == ft_atol(str[j]))
-				ft_error("The same number cannot exit multiple times", l);
-			if (ft_atol(str[i]) > INT_MAX || ft_atol(str[i]) < INT_MIN)
-				ft_error("Try numbers between [INT_MIN, INT_MAX]", l);
+				ft_error("Error", l);
 			j++;
 		}
 		i++;
 	}
 }
 
-void	ft_verif(char *str, t_data *l)
+void	ft_verif(char *str, t_data *l, t_stack **a)
 {
 	int	i;
+	int	err;
 
 	i = 0;
+	err = 0;
 	while (str[i])
 	{
 		if ((str[i] > '9' || str[i] < '0')
-			&& str[i] != '-' && str[i] != '+')
-			ft_error("Invalid arguments, try only numbers arguments", l);
-		if (i > 0 && (str[i] == '-' || str[i] == '+')
-			&& str[i - 1] != ' ')
-			ft_error("Invalid number in the chain.", l);
+			&& !(str[i] == '-' || str[i] == '+'))
+			err = 1;
+		if ((str[i] == '-' || str[i] == '+')
+			&& str[i - 1] != ' ' && i > 0)
+			err = 1;
 		i++;
 	}
+	if (err == 1)
+	{
+		ft_free_stack(a);
+		ft_error("Error", l);
+	}
+}
+
+void	ft_verif_str(char *argv, t_data *l)
+{
+	int		i;
+	int		ct;
+
+	if (!argv[0] || !argv)
+	{
+		ft_free_all(l);
+		exit(EXIT_SUCCESS);
+	}
+	i = 0;
+	ct = 0;
+	while (argv[i])
+	{
+		if ((argv[i] > '9' || argv[i] < '0') && (argv[0] != '-' || argv[0] != '+'))
+			ct++;
+		i++;
+	}
+	if (i == ct)
+		ft_error("ERROR", l);
 }

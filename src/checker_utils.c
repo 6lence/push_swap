@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 11:23:55 by mescobar          #+#    #+#             */
-/*   Updated: 2023/09/18 16:35:59 by miguel           ###   ########.fr       */
+/*   Updated: 2023/09/20 10:50:36 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	ft_verif_args_checker(char **str)
 {
 	int	i;
 	int	j;
-
 
 	i = 0;
 	while (str[i])

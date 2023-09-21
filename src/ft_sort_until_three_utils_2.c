@@ -6,25 +6,19 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 13:05:53 by mescobar          #+#    #+#             */
-/*   Updated: 2023/09/19 14:38:52 by miguel           ###   ########.fr       */
+/*   Updated: 2023/09/20 11:35:37 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_push_swap.h"
 
-int	ft_pos_sign(int pos, t_data *l, char c)
+void	ft_sign_pos(int *tmp_sign, int *pos, t_data *l)
 {
-	if (c == 'b' && pos > l->size_b / 2)
+	if (*pos > l->size_b / 2)
 	{
-		l->sign_b = 1;
-		pos = l->size_b - pos;
+		*pos = l->size_b - *pos;
+		*tmp_sign = 1;
 	}
-	if (c == 'a' && pos > l->size_a / 2)
-	{
-		l->sign_a = 1;
-		pos = l->size_a - pos;
-	}
-	return (pos);
 }
 
 void	ft_best_of(int pos_b1, int pos_b2, int pos_a, t_data *l)
@@ -33,37 +27,24 @@ void	ft_best_of(int pos_b1, int pos_b2, int pos_a, t_data *l)
 	int	tmp_sign2;
 	int	tot_b1;
 	int	tot_b2;
-	int	total;
 
 	tmp_sign1 = 0;
 	tmp_sign2 = 0;
-	if (pos_b1 > l->size_b / 2)
-	{
-		pos_b1 = l->size_b - pos_b1;
-		tmp_sign1 = 1;
-	}
-	if (pos_b2 > l->size_b / 2)
-	{
-		pos_b2 = l->size_b - pos_b2;
-		tmp_sign2 = 1;
-	}
+	ft_sign_pos(&tmp_sign1, &pos_b1, l);
+	ft_sign_pos(&tmp_sign2, &pos_b2, l);
 	l->mirror = l->size_a - (l->size_a - pos_a);
-	total = l->opt_b + l->opt_a;
+	l->total = l->opt_b + l->opt_a;
 	tot_b1 = pos_b1 + pos_a;
 	tot_b2 = pos_b2 + l->mirror;
-	if (((tot_b2 < tot_b1 && tot_b2 < total)
-			|| (tot_b2 < total && 1 == tmp_sign2)))
+	if (((tot_b2 < tot_b1 && tot_b2 < l->total)
+			|| (tot_b2 < l->total && 1 == tmp_sign2)))
 	{
-		l->sign_b = tmp_sign2;
-		l->opt_a = l->mirror;
-		l->opt_b = pos_b2;
+		ft_affect_sign(tmp_sign2, l->mirror, pos_b2, l);
 		l->sign_a = 1;
 	}
-	else if ((tot_b1 < total || (tot_b1 < total && tmp_sign1 == 0)))
+	else if ((tot_b1 < l->total || (tot_b1 < l->total && tmp_sign1 == 0)))
 	{
-		l->sign_b = tmp_sign1;
-		l->opt_a = pos_a;
-		l->opt_b = pos_b1;
+		ft_affect_sign(tmp_sign1, pos_a, pos_b1, l);
 		l->sign_a = 0;
 	}
 }

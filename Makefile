@@ -16,6 +16,7 @@ FILES_C =	${SRC}main.c \
 			${SRC}ft_sort_until_three.c \
 			${SRC}ft_sort_until_three_utils.c \
 			${SRC}ft_sort_until_three_utils_2.c \
+			${SRC}ft_sort_until_three_utils_3.c \
 
 CHECKER_C =	${SRC}checker.c \
 			${SRC}checker_utils.c \

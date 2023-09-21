@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:15:59 by mescobar          #+#    #+#             */
-/*   Updated: 2023/09/19 15:31:30 by miguel           ###   ########.fr       */
+/*   Updated: 2023/09/20 14:58:51 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,11 @@ void	ft_max_first(t_stack **b, t_data *l)
 void	ft_six_percent(t_stack **a, t_stack **b, t_data *l)
 {
 	int	i;
+	int	max;
 
 	i = 3;
-	while ((*b)->x != ft_lstmax(*b))
+	max = ft_find_in_len(*b, l->six_percent - 3, ft_lstlen(*b));
+	while ((*b)->x != max)
 	{
 		while ((*b)->x < ft_lstlast(*a)->x && i > 0)
 		{
@@ -91,7 +93,8 @@ void	ft_push_back(t_stack **a, t_stack **b, t_data *l)
 	int	i;
 
 	i = l->six_percent;
-	ft_six_percent(a, b, l);
+	if (l->six_percent > 3)
+		ft_six_percent(a, b, l);
 	while ((*b))
 	{
 		while ((*b)->x < ft_lstlast(*a)->x && i-- > 0)

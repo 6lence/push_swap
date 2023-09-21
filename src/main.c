@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:12:08 by miguel            #+#    #+#             */
-/*   Updated: 2023/09/18 16:36:25 by miguel           ###   ########.fr       */
+/*   Updated: 2023/09/20 14:34:02 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	ft_add_back(char *nb, t_stack **a, t_data *l)
 
 	new = malloc(sizeof(t_stack));
 	if (!new)
-		ft_error("Malloc error ", l);
+		ft_error("Error", l);
 	new->x = ft_atoi(nb);
 	new->next = NULL;
 	if (*a)
@@ -31,13 +31,14 @@ static void	ft_init_str(char *argv, t_stack **a, t_data *l)
 {
 	int		i;
 
+	ft_verif_str(argv, l);
 	l->args = ft_split(argv, ' ');
 	ft_repeat_verif(l->args, l);
 	*a = NULL;
 	i = 0;
 	while (l->args[i])
 	{
-		ft_verif(l->args[i], l);
+		ft_verif(l->args[i], l, a);
 		ft_add_back(l->args[i++], a, l);
 	}
 }
@@ -51,7 +52,7 @@ static void	ft_init_args(char **nb, t_stack **a, t_data *l)
 	i = 0;
 	while (nb[i])
 	{
-		ft_verif(nb[i], l);
+		ft_verif(nb[i], l, a);
 		ft_add_back(nb[i++], a, l);
 	}
 }
@@ -70,7 +71,10 @@ int	main(int argc, char **argv)
 
 	l = ft_calloc(1, sizeof(t_data));
 	if (argc < 2)
-		ft_error("Not enough arguments", l);
+	{
+		ft_free_all(l);
+		exit(EXIT_SUCCESS);
+	}
 	if (argc == 2)
 		ft_init_str(argv[1], &a, l);
 	else if (argc > 2)

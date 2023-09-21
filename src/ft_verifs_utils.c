@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_verifs_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 11:09:49 by mescobar          #+#    #+#             */
-/*   Updated: 2023/09/20 14:32:25 by miguel           ###   ########.fr       */
+/*   Updated: 2023/09/21 10:20:34 by mescobar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,8 @@ void	ft_verif_str(char *argv, t_data *l)
 	ct = 0;
 	while (argv[i])
 	{
-		if ((argv[i] > '9' || argv[i] < '0') && (argv[0] != '-' || argv[0] != '+'))
+		if ((argv[i] > '9' || argv[i] < '0')
+			&& (argv[0] != '-' || argv[0] != '+'))
 			ct++;
 		i++;
 	}

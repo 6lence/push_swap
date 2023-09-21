@@ -6,7 +6,7 @@
 /*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 11:09:49 by mescobar          #+#    #+#             */
-/*   Updated: 2023/09/21 10:20:34 by mescobar         ###   ########.fr       */
+/*   Updated: 2023/09/21 14:18:50 by mescobar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	ft_verif(char *str, t_data *l, t_stack **a)
 			&& !(str[i] == '-' || str[i] == '+'))
 			err = 1;
 		if ((str[i] == '-' || str[i] == '+')
-			&& str[i - 1] != ' ' && i > 0)
+			&& i > 0 && str[i - 1] != ' ')
 			err = 1;
 		i++;
 	}

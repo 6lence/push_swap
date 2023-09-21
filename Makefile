@@ -22,6 +22,7 @@ CHECKER_C =	${SRC}checker.c \
 			${SRC}checker_utils.c \
 			${SRC}checker_instruct.c \
 			${SRC}checker_checking.c \
+			${SRC}checker_error.c \
 
 LIBFT_PATH = ${SRC}ft_printf/
 
@@ -39,8 +40,7 @@ NAME = push_swap
 
 CHECKER_NAME = checker
 
-all: ${NAME} \
-	 ${CHECKER_NAME} \
+all: ${NAME}
 
 ${LIBFT}:
 	make -C ${LIBFT_PATH} all bonus
@@ -49,7 +49,7 @@ ${NAME}: ${LIBFT} ${FILES_O}
 	cc ${FLAGS} ${FILES_O} ${LIBFT} -I ${FILES_H} -o ${NAME} -lm \
 		&& echo "Make done successfully" || echo "Compilation ERROR"
 
-${CHECKER_NAME}: ${LIBFT} ${CHECKER_O}
+bonus: ${LIBFT} ${CHECKER_O}
 	cc ${FLAGS} ${CHECKER_O} ${LIBFT} -I ${FILES_H} -o ${CHECKER_NAME} -lm \
 		&& echo "Checker compilation sucess" || echo "Error compilating Checker"
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sort_until_three.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 09:40:23 by miguel            #+#    #+#             */
-/*   Updated: 2023/09/20 14:55:44 by miguel           ###   ########.fr       */
+/*   Updated: 2023/09/21 10:49:51 by mescobar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ void	ft_sort_until_three(t_stack **a, t_stack **b, t_data *l)
 	ft_pb(a, b, l);
 	ft_2b(b, l);
 	l->six_percent = (9 * ft_lstlen(*a) / 100);
-	while (ft_lstlen(*a) > l->six_percent)
+	while ((ft_lstlen(*a) > l->six_percent && l->six_percent > 3)
+		|| (ft_lstlen(*a) > 3 && l->six_percent < 3))
 	{
 		l->size_a = ft_lstlen(*a);
 		l->size_b = ft_lstlen(*b);
@@ -90,7 +91,7 @@ void	ft_sort_until_three(t_stack **a, t_stack **b, t_data *l)
 		ft_push(a, b, l);
 	}
 	ft_max_first(b, l);
-	while (ft_lstlen(*a) > 3)
+	while (ft_lstlen(*a) > 3 && l->six_percent > 3)
 	{
 		l->size_a = ft_lstlen(*a);
 		ft_push_min(a, b, l);

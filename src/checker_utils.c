@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 11:23:55 by mescobar          #+#    #+#             */
-/*   Updated: 2023/09/20 10:50:36 by miguel           ###   ########.fr       */
+/*   Updated: 2023/09/21 11:37:18 by mescobar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,50 +41,46 @@ void	ft_verif_args_checker(char **str)
 {
 	int	i;
 	int	j;
+	int	err;
 
+	err = 0;
 	i = 0;
 	while (str[i])
 	{
+		if (ft_atol(str[i]) > INT_MAX || ft_atol(str[i]) < INT_MIN)
+			err = 1;
 		j = i + 1;
 		while (str[j])
 		{
 			if (ft_atol(str[i]) == ft_atol(str[j]))
-			{
-				perror("The same number cannot exist multiple times");
-				exit(EXIT_FAILURE);
-			}
-			if (ft_atol(str[i]) < INT_MIN || ft_atol(str[i]) > INT_MAX)
-			{
-				perror("Try numbers between [INT_MIN, INT_MAX]");
-				exit(EXIT_FAILURE);
-			}
+				err = 1;
 			j++;
 		}
 		i++;
 	}
+	if (err == 1)
+		ft_error_checker();
 }
 
 void	ft_verif_checker(char *str)
 {
 	int	i;
+	int	err;
 
 	i = 0;
+	err = 0;
 	while (str[i])
 	{
 		if ((str[i] > '9' || str[i] < '0')
-			&& str[i] != '-' && str[i] != '+')
-		{
-			perror("Invalid arguments, try only numbers");
-			exit(EXIT_FAILURE);
-		}
-		if (i > 0 && (str[i] == '-' || str[i] == '+')
-			&& str[i - 1] != ' ')
-		{
-			perror("Invalid number in the chain");
-			exit(EXIT_FAILURE);
-		}
+			&& !(str[i] == '-' || str[i] == '+'))
+			err = 1;
+		if ((str[i] == '-' || str[i] == '+')
+			&& str[i - 1] != ' ' && i > 0)
+			err = 1;
 		i++;
 	}
+	if (err == 1)
+		ft_error_checker();
 }
 
 void	ft_free_stack(t_stack **a)
@@ -103,14 +99,10 @@ void	ft_free_stack(t_stack **a)
 	}
 }
 
-void	ft_lstprint(t_stack **a)
+void	ft_free(char *buff, char *tmp)
 {
-	t_stack	*tmp;
-
-	tmp = *a;
-	while (tmp)
-	{
-		ft_printf("%d\n", tmp->x);
-		tmp = tmp->next;
-	}
+	if (buff)
+		free(buff);
+	if (tmp)
+		free(tmp);
 }

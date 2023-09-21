@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sort_until_three_utils.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:15:59 by mescobar          #+#    #+#             */
-/*   Updated: 2023/09/20 14:58:51 by miguel           ###   ########.fr       */
+/*   Updated: 2023/09/21 10:49:43 by mescobar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,9 @@ void	ft_push_back(t_stack **a, t_stack **b, t_data *l)
 {
 	int	i;
 
-	i = l->six_percent;
+	i = ft_lstlen(*a);
+	if (l->six_percent > 3)
+		i = l->six_percent;
 	if (l->six_percent > 3)
 		ft_six_percent(a, b, l);
 	while ((*b))

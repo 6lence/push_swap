@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_push_swap.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:20:53 by miguel            #+#    #+#             */
-/*   Updated: 2023/09/20 14:24:18 by miguel           ###   ########.fr       */
+/*   Updated: 2023/09/21 11:36:26 by mescobar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,16 +94,18 @@ long int	ft_atol(const char *str);
 
 
 //checker:
-void	ft_verif_checker(char *str);
-void	ft_verif_args_checker(char **args);
-void	ft_ra_checker(t_stack **a);
-void	ft_rr_checker(t_stack **a, t_stack **b);
-void	ft_rra_checker(t_stack **a);
-void	ft_rrr_checker(t_stack **a, t_stack **b);
-void	ft_sa_checker(t_stack **a);
-void	ft_pa_checker(t_stack **a, t_stack **b);
-void	ft_instruct(char *move, t_stack **a, t_stack **b);
-void	sort(t_stack **a, t_stack **b);
-int		sorted(t_stack **a);
+void		ft_error_checker(void);
+void		ft_verif_checker(char *str);
+void		ft_verif_args_checker(char **args);
+void		ft_ra_checker(t_stack **a);
+void		ft_rr_checker(t_stack **a, t_stack **b);
+void		ft_rra_checker(t_stack **a);
+void		ft_rrr_checker(t_stack **a, t_stack **b);
+void		ft_sa_checker(t_stack **a);
+void		ft_pa_checker(t_stack **a, t_stack **b);
+void		ft_instruct(char *move, t_stack **a, t_stack **b);
+void		ft_sort(t_stack **a, t_stack **b);
+int			ft_sorted(t_stack **a);
+void		ft_free(char *buff, char *tmp);
 
 #endif

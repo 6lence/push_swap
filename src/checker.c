@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 11:06:49 by mescobar          #+#    #+#             */
-/*   Updated: 2023/09/18 16:36:41 by miguel           ###   ########.fr       */
+/*   Updated: 2023/09/21 11:37:30 by mescobar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,7 @@ static void	ft_init_str_checker(char *argv, t_stack **a)
 	{
 		free(args[0]);
 		free(args);
-		ft_printf("Try more than one element.\n");
-		exit(EXIT_FAILURE);
+		ft_error_checker();
 	}
 	ft_verif_args_checker(args);
 	*a = NULL;
@@ -94,8 +93,8 @@ int	main(int argc, char **argv)
 		ft_init_args_checker(argv + 1, &a);
 	b = NULL;
 	len = ft_lstlen(a);
-	sort(&a, &b);
-	if (b || ft_lstlen(a) != len || !sorted(&a))
+	ft_sort(&a, &b);
+	if (b || ft_lstlen(a) != len || !ft_sorted(&a))
 		ft_printf("KO\n");
 	else
 		ft_printf("OK\n");

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker_checking.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mescobar <mescobar42@student.42perpigna    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 11:35:30 by mescobar          #+#    #+#             */
-/*   Updated: 2023/09/18 16:58:06 by miguel           ###   ########.fr       */
+/*   Updated: 2023/09/21 11:36:45 by mescobar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,25 +61,31 @@ void	ft_instruct(char *move, t_stack **a, t_stack **b)
 		else if (ft_strcmp(move, "rrr\n"))
 			ft_rrr_checker(a, b);
 	}
+	else
+		ft_error_checker();
 }
 
-void	sort(t_stack **a, t_stack **b)
+void	ft_sort(t_stack **a, t_stack **b)
 {
 	char	*buff;
+	char	*tmp;
 
-	buff = get_next_line(0);
-	ft_printf("%s\n", buff);
-	while (buff)
+	buff = ft_calloc(2, 1);
+	tmp = ft_calloc(1, 1);
+	while (read(0, buff, 1))
 	{
-		ft_instruct(buff, a, b);
-		free(buff);
-		buff = get_next_line(0);
+		ft_strlcat(tmp, buff, 1);
+		if (tmp[ft_strlen(tmp) - 1] == '\n')
+		{
+			ft_instruct(buff, a, b);
+			ft_printf("%s\n", tmp);
+			ft_free(buff, tmp);
+		}
 	}
-	if (buff)
-		free(buff);
+	ft_free(buff, tmp);
 }
 
-int	sorted(t_stack **a)
+int	ft_sorted(t_stack **a)
 {
 	t_stack	*tmp;
 

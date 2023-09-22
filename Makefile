@@ -40,7 +40,8 @@ NAME = push_swap
 
 CHECKER_NAME = checker
 
-all: ${NAME}
+all:	${NAME} \
+		bonus \
 
 ${LIBFT}:
 	make -C ${LIBFT_PATH} all bonus
